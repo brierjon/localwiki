@@ -256,7 +256,7 @@ def install_system_requirements():
     sudo('apt-add-repository -y ppa:ubuntugis/ubuntugis-unstable')
     sudo('apt-get update')
 
-    sudo('apt-get -y --force-yes install libdal1h')
+    sudo('apt-get -y --force-yes install libgdal1h')
 
     # Ubuntu system packages
     system_python_pkg = [
