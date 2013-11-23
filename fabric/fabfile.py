@@ -247,6 +247,9 @@ def setup_jetty():
     sudo("service jetty start")
 
 def install_system_requirements():
+    # XXX TEST
+    sudo('apt-get -y remove postgresql')
+
     # Update package list
     sudo('apt-get update')
     sudo('apt-get -y install python-software-properties')
@@ -267,23 +270,22 @@ def install_system_requirements():
     ]
     solr_pkg = ['solr-jetty', 'default-jre-headless']
     apache_pkg = ['apache2', 'libapache2-mod-wsgi']
-    postgres_pkg = ['libgdal1h', 'gdal-bin', 'proj', 'postgis']
+    postgres_pkg = ['gdal-bin', 'proj', 'postgis']
     memcached_pkg = ['memcached']
     varnish_pkg = ['varnish']
     redis_pkg = ['redis-server']
     mailserver_pkg = ['postfix']
     packages = (
-        system_python_pkg,
-        solr_pkg,
-        apache_pkg,
-        postgres_pkg,
-        memcached_pkg,
-        varnish_pkg,
-        redis_pkg,
-        mailserver_pkg,
+        system_python_pkg +
+        solr_pkg +
+        apache_pkg +
+        postgres_pkg +
+        memcached_pkg +
+        varnish_pkg +
+        redis_pkg +
+        mailserver_pkg
     )
-    for pkg_group in packages:
-        sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes -o Dpkg::Options::="--force-confold" install %s' % ' '.join(pkg_group))
+    sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes -o Dpkg::Options::="--force-confold" install %s' % ' '.join(packages))
 
 def init_postgres_db():
     # Generate a random password, for now.
