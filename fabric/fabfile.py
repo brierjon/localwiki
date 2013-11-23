@@ -282,7 +282,7 @@ def install_system_requirements():
         redis_pkg + 
         mailserver_pkg
     )
-    sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install %s' % ' '.join(packages))
+    sudo('DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes install %s' % ' '.join(packages))
 
 def init_postgres_db():
     # Generate a random password, for now.
