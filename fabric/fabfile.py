@@ -256,9 +256,6 @@ def install_system_requirements():
     sudo('apt-add-repository -y ppa:ubuntugis/ubuntugis-unstable')
     sudo('apt-get update')
 
-    #sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes -o Dpkg::Options::="--force-confold" install gdal-bin')
-    #print "--____---_--------"
-
     # Ubuntu system packages
     system_python_pkg = [
         'python-setuptools',
@@ -270,7 +267,7 @@ def install_system_requirements():
     ]
     solr_pkg = ['solr-jetty', 'default-jre-headless']
     apache_pkg = ['apache2', 'libapache2-mod-wsgi']
-    postgres_pkg = ['proj', 'postgis']
+    postgres_pkg = ['gdal-bin', 'proj', 'postgresql-9.1-postgis-2.0']
     memcached_pkg = ['memcached']
     varnish_pkg = ['varnish']
     redis_pkg = ['redis-server']
@@ -282,10 +279,10 @@ def install_system_requirements():
         postgres_pkg +
         memcached_pkg +
         varnish_pkg +
-        redis_pkg +
+        redis_pkg + 
         mailserver_pkg
     )
-    sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes -o Dpkg::Options::="--force-confold" install %s' % ' '.join(packages))
+    sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install %s' % ' '.join(packages))
 
 def init_postgres_db():
     # Generate a random password, for now.
