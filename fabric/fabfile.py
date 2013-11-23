@@ -267,7 +267,7 @@ def install_system_requirements():
     ]
     solr_pkg = ['solr-jetty', 'default-jre-headless']
     apache_pkg = ['apache2', 'libapache2-mod-wsgi']
-    postgres_pkg = ['libgdal1h', 'gdal-bin', 'proj', 'postgresql-9.1-postgis-2.0']
+    postgres_pkg = ['gdal-bin', 'proj', 'postgis']
     memcached_pkg = ['memcached']
     varnish_pkg = ['varnish']
     redis_pkg = ['redis-server']
