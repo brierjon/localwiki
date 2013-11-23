@@ -247,9 +247,6 @@ def setup_jetty():
     sudo("service jetty start")
 
 def install_system_requirements():
-    # XXX TEST
-    sudo('apt-get -y remove postgresql')
-
     # Update package list
     sudo('apt-get update')
     sudo('apt-get -y install python-software-properties')
