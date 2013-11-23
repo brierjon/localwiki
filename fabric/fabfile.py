@@ -273,16 +273,17 @@ def install_system_requirements():
     redis_pkg = ['redis-server']
     mailserver_pkg = ['postfix']
     packages = (
-        system_python_pkg +
-        solr_pkg +
-        apache_pkg +
-        postgres_pkg +
-        memcached_pkg +
-        varnish_pkg +
-        redis_pkg + 
-        mailserver_pkg
+        system_python_pkg,
+        solr_pkg,
+        apache_pkg,
+        postgres_pkg,
+        memcached_pkg,
+        varnish_pkg,
+        redis_pkg,
+        mailserver_pkg,
     )
-    sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes -o Dpkg::Options::="--force-confold" install %s' % ' '.join(packages))
+    for pkg_group in packages:
+        sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes -o Dpkg::Options::="--force-confold" install %s' % ' '.join(pkg_group))
 
 def init_postgres_db():
     # Generate a random password, for now.
