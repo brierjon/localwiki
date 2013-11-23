@@ -256,6 +256,9 @@ def install_system_requirements():
     sudo('apt-add-repository -y ppa:ubuntugis/ubuntugis-unstable')
     sudo('apt-get update')
 
+    sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes -o Dpkg::Options::="--force-confold" install gdal-bin')
+    print "--____---_--------"
+
     # Ubuntu system packages
     system_python_pkg = [
         'python-setuptools',

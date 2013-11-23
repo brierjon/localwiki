@@ -10,7 +10,8 @@ before_install:
     - pip install -r fabric/requirements.txt
     - pip install coveralls --use-mirrors
     - sudo /etc/init.d/postgresql stop
-    - sudo cp /etc/postgresql/9.1/main/pg_hba.conf ./
+    - sudo rm -rf /etc/postgresql
+    - sudo rm -rf /var/lib/postgresql
     - sudo apt-get -y --purge remove postgresql postgresql-9.1 libpq-dev libpq5 postgresql-client-common postgresql-common postgis postgresql-9.1-postgis
 install:
     - cd fabric; fab provision:test_server -H localhost -i ~/.ssh/id_rsa; cd ~/
