@@ -256,8 +256,6 @@ def install_system_requirements():
     sudo('apt-add-repository -y ppa:ubuntugis/ubuntugis-unstable')
     sudo('apt-get update')
 
-    sudo('apt-get -y --force-yes install libgdal1h')
-
     # Ubuntu system packages
     system_python_pkg = [
         'python-setuptools',
@@ -284,7 +282,7 @@ def install_system_requirements():
         redis_pkg + 
         mailserver_pkg
     )
-    sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install %s' % ' '.join(packages))
+    sudo('DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes -o Dpkg::Options::="--force-confold" install %s' % ' '.join(packages))
 
 def init_postgres_db():
     # Generate a random password, for now.
