@@ -10,7 +10,8 @@ before_install:
     - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
     - pip install -r fabric/requirements.txt
     - pip install coveralls --use-mirrors
-    - sudo apt-get -y --purge remove postgis postgresql-9.1-postgis
+    - sudo /etc/init.d/postgresql stop
+    - sudo apt-get -y --purge remove postgresql postgresql-9.1 libpq-dev libpq5 postgresql-client-common postgresql-common postgis postgresql-9.1-postgis
     - sudo apt-get autoremove
 install:
     - cd fabric; fab provision:test_server -H localhost -i ~/.ssh/id_rsa; cd ~/
