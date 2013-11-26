@@ -12,9 +12,9 @@ before_install:
     - pip install -r fabric/requirements.txt
     - pip install coveralls --use-mirrors
     - sudo /etc/init.d/postgresql stop
-    - sudo rm -rf /etc/postgresql
-    - sudo rm -rf /etc/postgresql
     - sudo apt-get -y --purge remove postgresql postgresql-9.1 libpq-dev libpq5 postgresql-client-common postgresql-common postgis postgresql-9.1-postgis
+    - sudo rm -rf /etc/postgresql
+    - sudo rm -rf /var/lib/postgresql
     - sudo apt-get autoremove
     - sudo apt-get -y install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" postgresql postgresql-9.1
 install:
